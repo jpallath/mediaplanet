@@ -1,0 +1,19 @@
+{
+  "name": "mediaplanet",
+  "version": "1.0.0",
+  "description": "mediplanet applicatioj",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpallath/mediaplanet.git"
+  },
+  "author": "Jerry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpallath/mediaplanet/issues"
+  },
+  "homepage": "https://github.com/jpallath/mediaplanet#readme"
+}
