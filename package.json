@@ -16,5 +16,15 @@
   "bugs": {
     "url": "https://github.com/jpallath/mediaplanet/issues"
   },
-  "homepage": "https://github.com/jpallath/mediaplanet#readme"
+  "homepage": "https://github.com/jpallath/mediaplanet#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-ejs-layouts": "^1.1.0",
+    "method-override": "^2.3.5",
+    "mongoose": "^4.1.10",
+    "morgan": "^1.6.1"
+  },
+  "devDependencies": {}
 }
