@@ -31,7 +31,8 @@
           </tr>
           <tr ng-repeat='action in actionlist'>
             <td>{{action.action}}</td>
-            <td><a class="unselected">Discussion</a></td>
+            <td>{{action.media}}</td>
+            <td>{{action.image}}</td>
             <td><button class="btn btn-warning" ng-click="editAction(action._id)">Edit</button>
             <td><button class="btn btn-danger" ng-click="removeAction(action._id)">Remove</button>
           </tr>
