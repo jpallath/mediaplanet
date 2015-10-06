@@ -1,5 +1,5 @@
 var PORT = process.env.PORT || 3000;
-var MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/jerrkipedia'
+var MONGOURI = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/mediaplanet'
 var express      = require('express'),
 	server         = express(),
 	ejs            = require('ejs'),
@@ -7,29 +7,22 @@ var express      = require('express'),
 	methodOverride = require('method-override'),
 	expressLayouts = require('express-ejs-layouts'),
 	morgan         = require('morgan'),
-	mongoose       = require('mongoose'),
-	session        = require('express-session');
+	mongoose       = require('mongoose');
 
 // Set
 server.set('views', "./views");
 server.set('view engine', 'ejs');
 //Uses
-server.use(session({
-	secret:           "mediaplanet",
-	resave:            false,
-	saveUninitialized: false
-}));
-
-server.use(bodyParser.urlencoded({extended:true}));
+// server.use(bodyParser.urlencoded({extended:true}));
+server.use(bodyParser.json());
 server.use(express.static('./public'));
 server.use(methodOverride('_method'));
 server.use(morgan('short'));
 server.use(expressLayouts);
 // Routes and Controllers
-// var articleController = require ('./controllers/articles.js');
-// server.use('/articles', articleController);
-var userController = require ('./controllers/users.js');
-server.use('/users', userController);
+var actionController = require ('./controllers/actions.js');
+server.use('/actions', actionController);
+
 
 // this is the "controller" for the routes below here, should
 // we not hit one of the contollers above
@@ -39,8 +32,12 @@ server.use(function (req, res, next) {
 })
 
 server.get('/', function(req, res){
-  res.render('welcome');
+  res.render('login');
 });
+
+server.get('/welcome', function(req, res){
+	res.render('welcome');
+})
 
 //Catchall Routes
 server.use(function(req, res){
@@ -52,10 +49,11 @@ mongoose.connect(MONGOURI);
 var db = mongoose.connection;
 
 db.on('error', function(){
-  console.log("ERROR OVERLOAD");
+  console.log("Database not loaded!");
 });
 
 db.once('open', function(err){
+  console.log("Error was: ", err);
   console.log("Database is set to stun");
   server.listen(PORT, function(){
     console.log("Server is set to stun")
